@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SolarGuard™ | Heavy-Duty Automatic Solar Coop Door</title>
-  <meta name="description" content="Automatic solar-powered aluminum chicken coop door with light sensors and anti-pinch safety mechanism.">
+  <meta name="description" content="Automatic solar-powered chicken coop door with HenSafe anti-pinch resistance sensors and all-weather predator defense.">
   <style>
     :root {
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      --color-bg: #f8fafc;
-      --color-surface: #ffffff;
-      --color-text-main: #0f172a;
-      --color-text-muted: #475569;
-      --color-text-light: #94a3b8;
-      --color-brand-primary: #15803d;
-      --color-brand-hover: #166534;
-      --color-brand-surface: #f0fdf4;
-      --color-border: #e2e8f0;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-light: #94a3b8;
+      --brand: #15803d;
+      --brand-hover: #166534;
+      --brand-subtle: #f0fdf4;
+      --border: #e2e8f0;
       --radius-sm: 8px;
       --radius-md: 14px;
       --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -26,10 +26,11 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: var(--font-sans);
-      background-color: var(--color-bg);
-      color: var(--color-text-main);
+      background-color: var(--bg);
+      color: var(--text);
       line-height: 1.5;
       padding-bottom: 4rem;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* Top Banner */
@@ -43,38 +44,40 @@
       letter-spacing: 0.02em;
     }
 
-    /* Layout Container */
+    /* Layout Shell */
     .container {
       max-width: 580px;
       margin: 0 auto;
       padding: 1.25rem 1rem;
     }
 
-    /* Main Card */
-    .product-card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: var(--radius-md);
       padding: 1.5rem;
       box-shadow: var(--shadow-md);
     }
 
-    /* Option B: CDN Image Gallery */
+    /* Interactive Product Gallery */
     .gallery-stage {
       width: 100%;
+      height: 320px;
       border-radius: var(--radius-sm);
       overflow: hidden;
       background: #f1f5f9;
-      border: 1px solid var(--color-border);
+      border: 1px solid var(--border);
       margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .gallery-stage img {
       width: 100%;
-      height: 340px;
+      height: 100%;
+      object-fit: cover;
       display: block;
-      object-fit: contain;
-      background-color: #ffffff;
       transition: opacity 0.15s ease-in-out;
     }
 
@@ -85,21 +88,21 @@
     }
 
     .gallery-thumbs img {
-      width: 68px;
-      height: 68px;
+      width: 64px;
+      height: 64px;
       border-radius: 6px;
-      border: 2px solid var(--color-border);
+      border: 2px solid var(--border);
       cursor: pointer;
       object-fit: cover;
-      background: #ffffff;
+      background: #fff;
       transition: border-color 0.15s ease;
     }
 
     .gallery-thumbs img.active {
-      border-color: var(--color-brand-primary);
+      border-color: var(--brand);
     }
 
-    /* Badges & Headers */
+    /* Header & Ratings */
     .rating-badge {
       display: inline-flex;
       align-items: center;
@@ -117,43 +120,43 @@
     h1 {
       font-size: 1.5rem;
       line-height: 1.25;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: -0.02em;
       margin-bottom: 0.5rem;
     }
 
     .subtitle {
       font-size: 0.9375rem;
-      color: var(--color-text-muted);
+      color: var(--text-muted);
       margin-bottom: 1.25rem;
     }
 
-    /* Price Structure */
+    /* Pricing Block */
     .price-box {
       display: flex;
       align-items: baseline;
       gap: 0.75rem;
       margin-bottom: 1.25rem;
       padding-bottom: 1rem;
-      border-bottom: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--border);
     }
 
-    .current-price {
+    .price-current {
       font-size: 2.125rem;
       font-weight: 800;
-      color: var(--color-brand-primary);
+      color: var(--brand);
       letter-spacing: -0.02em;
     }
 
-    .original-price {
+    .price-strike {
       font-size: 1.125rem;
-      color: var(--color-text-light);
+      color: var(--text-light);
       text-decoration: line-through;
     }
 
-    .savings-badge {
-      background: var(--color-brand-surface);
-      color: var(--color-brand-primary);
+    .badge-save {
+      background: var(--brand-subtle);
+      color: var(--brand);
       font-size: 0.75rem;
       font-weight: 700;
       padding: 0.2rem 0.5rem;
@@ -161,7 +164,7 @@
       text-transform: uppercase;
     }
 
-    /* Feature Grid */
+    /* Bento Feature Cards */
     .bento-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -177,37 +180,37 @@
 
     .bento-card {
       background: #f8fafc;
-      border: 1px solid var(--color-border);
+      border: 1px solid var(--border);
       border-radius: var(--radius-sm);
       padding: 0.875rem;
     }
 
-    .bento-card.full {
+    .bento-card.highlight {
       grid-column: 1 / -1;
-      background: #f0fdf4;
+      background: var(--brand-subtle);
       border-color: #bbf7d0;
     }
 
     .bento-title {
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.875rem;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.25rem;
       display: flex;
       align-items: center;
       gap: 0.35rem;
     }
 
-    .bento-text {
+    .bento-body {
       font-size: 0.8125rem;
-      color: var(--color-text-muted);
+      color: var(--text-muted);
       line-height: 1.4;
     }
 
-    /* CTA Button */
+    /* Checkout Trigger */
     .btn-checkout {
       display: block;
       width: 100%;
-      background: var(--color-brand-primary);
+      background: var(--brand);
       color: #ffffff;
       text-align: center;
       text-decoration: none;
@@ -216,30 +219,39 @@
       padding: 1rem 1.25rem;
       border-radius: var(--radius-sm);
       box-shadow: var(--shadow-sm);
-      transition: background-color 0.15s ease;
+      transition: background-color 0.15s ease, transform 0.05s ease;
     }
 
     .btn-checkout:hover {
-      background: var(--color-brand-hover);
+      background: var(--brand-hover);
+    }
+
+    .btn-checkout:active {
+      transform: scale(0.99);
     }
 
     .secure-text {
       text-align: center;
       font-size: 0.75rem;
-      color: var(--color-text-light);
+      color: var(--text-light);
       margin-top: 0.65rem;
     }
 
-    /* Specs Table */
+    /* Specs & Accordion */
+    .section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem 0;
+    }
+
     .specs-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.8125rem;
-      margin-top: 1.75rem;
     }
 
     .specs-table tr {
-      border-bottom: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--border);
     }
 
     .specs-table td {
@@ -247,95 +259,138 @@
     }
 
     .specs-table td:first-child {
-      color: var(--color-text-muted);
+      color: var(--text-muted);
     }
 
     .specs-table td:last-child {
       text-align: right;
       font-weight: 600;
     }
+
+    details {
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 0;
+      font-size: 0.85rem;
+    }
+
+    summary {
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; font-size: 1.1rem; color: var(--text-muted); }
+    details[open] summary::after { content: "−"; }
+
+    .faq-answer {
+      margin-top: 0.5rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
   </style>
 </head>
 <body>
 
   <aside class="banner">
-    🚚 In Stock: Free Tracked 5–8 Day US Priority Shipping
+    🚚 In Stock: Free Tracked 5–8 Day U.S. Priority Delivery
   </aside>
 
   <main class="container">
-    <article class="product-card">
+    <article class="card">
 
-      <!-- Interactive CDN Media Stage -->
+      <!-- Gallery -->
       <section aria-label="Product Media">
         <div class="gallery-stage">
-          <img id="mainView" src="https://img.vevorstatic.com/us%2FJSKMQHSSKTYNWVWZO001Y3%2Fgoods_img-v2%2Fchicken-coop-door-opener-m100-1.2.jpg" alt="Solar Automatic Chicken Coop Door Complete Kit">
+          <img id="mainStage" 
+               src="https://hatchingtime.com/cdn/shop/files/logo_01.jpg?v=1734464196&width=1214" 
+               alt="Solar Automatic Coop Door Installed on Wood Coop">
         </div>
-        
         <div class="gallery-thumbs">
-          <img src="https://img.vevorstatic.com/us%2FJSKMQHSSKTYNWVWZO001Y3%2Fgoods_img-v2%2Fchicken-coop-door-opener-m100-1.2.jpg" 
+          <img src="https://hatchingtime.com/cdn/shop/files/logo_01.jpg?v=1734464196&width=1214" 
                class="active" 
-               onclick="swapImage(this)" 
-               alt="Kit Overview">
-          <img src="https://i5.walmartimages.com/asr/944071bb-4d26-436f-9dd3-49fb61ff183e.a5b8f3099a25ee4c148c69f6307b2f84.jpeg" 
-               onclick="swapImage(this)" 
+               onclick="swapPhoto(this)" 
                alt="Installed on Coop">
+          <img src="https://cdn11.bigcommerce.com/s-nt50cka3fs/images/stencil/1280x1280/products/1023/1287/solar-kit-for-automatic-chicken-coop-door-39__79218.1686758199.jpg?c=1" 
+               onclick="swapPhoto(this)" 
+               alt="Solar Kit and Control Box">
           <img src="https://easycoops.com/wp-content/uploads/2025/07/Ador1-dimensions-1.webp" 
-               onclick="swapImage(this)" 
-               alt="Clearance Dimensions">
+               onclick="swapPhoto(this)" 
+               alt="Clearance Dimensions Schematic">
         </div>
       </section>
 
-      <!-- Rating Pill -->
+      <!-- Ratings -->
       <div class="rating-badge">
-        <span>★★★★★</span> 4.8 / 5.0 (140+ Flock Owners)
+        <span>★★★★★</span> 4.8 / 5.0 (140+ Flock Keepers)
       </div>
 
       <h1>SolarGuard™ All-Weather Aluminum Coop Door</h1>
-      <p class="subtitle">Fully automated dawn-to-dusk light sensing with HenSafe™ anti-pinch protection. Keep predators out and sleep past sunrise.</p>
+      <p class="subtitle">Fully autonomous sunrise/sunset light sensing with HenSafe™ anti-pinch protection. Never make a freezing 5:30 AM coop run again.</p>
 
       <!-- Price -->
       <div class="price-box">
-        <span class="current-price">$74.99</span>
-        <span class="original-price">$99.99</span>
-        <span class="savings-badge">Save $25 Today</span>
+        <span class="price-current">$74.99</span>
+        <span class="price-strike">$99.99</span>
+        <span class="badge-save">Save $25 Today</span>
       </div>
 
       <!-- Features -->
       <div class="bento-grid">
-        <div class="bento-card full">
+        <div class="bento-card highlight">
           <div class="bento-title">🛡️ HenSafe™ Anti-Pinch Sensors</div>
-          <div class="bento-text">Built-in resistance detection stops and retracts the door if a bird is in the doorway. Safe for standard hens, bantams, and ducks.</div>
+          <div class="bento-body">Integrated resistance sensors halt and retract the aluminum door within 3 seconds if a hen or duck lingers in the threshold. Zero crushed birds.</div>
         </div>
         <div class="bento-card">
           <div class="bento-title">☀️ High-Yield Solar Panel</div>
-          <div class="bento-text">Continues charging in overcast conditions with 30-day internal battery reserve.</div>
+          <div class="bento-body">Runs continuously rain or shine with 30-day internal backup reserve.</div>
         </div>
         <div class="bento-card">
-          <div class="bento-title">🔒 Heavy-Gauge Aluminum</div>
-          <div class="bento-text">Predator-proof casing prevents raccoons, foxes, and rodents from prying open the track.</div>
+          <div class="bento-title">🔒 Predator-Proof Track</div>
+          <div class="bento-body">Heavy-gauge aluminum stops raccoons, foxes, and rodents from prying open the panel.</div>
         </div>
       </div>
 
-      <!-- Action Button -->
-      <a href="#" class="btn-checkout">Order SolarGuard — $74.99</a>
-      <div class="secure-text">🔒 256-Bit SSL Encrypted &bull; Apple Pay &bull; Google Pay &bull; Cards</div>
+      <!-- Action Button Wired Directly to Stripe -->
+      <a href="https://buy.stripe.com/test_bJe4gA2Gq8Q21Th18YdIA00" class="btn-checkout">Order SolarGuard — $74.99</a>
+      <div class="secure-text">🔒 256-Bit SSL Encrypted &bull; Apple Pay &bull; Google Pay &bull; Credit Cards</div>
 
       <!-- Specs -->
+      <h2 class="section-title">Technical Specifications</h2>
       <table class="specs-table">
         <tr><td>Opening Clearance</td><td>9.6" W x 8.4" H (Fits Large Breeds)</td></tr>
-        <tr><td>Material</td><td>Aircraft Aluminum + UV-Treated ABS</td></tr>
-        <tr><td>Operating Range</td><td>-15°F to 140°F (-26°C to 60°C)</td></tr>
-        <tr><td>Installation</td><td>Pre-assembled (4 exterior screws included)</td></tr>
+        <tr><td>Door Panel Material</td><td>Heavy Aircraft-Grade Aluminum Alloy</td></tr>
+        <tr><td>Operating Temperatures</td><td>-15°F to 140°F (-26°C to 60°C)</td></tr>
+        <tr><td>Power Method</td><td>Solar Panel + USB Emergency Backup Cord</td></tr>
+        <tr><td>Installation Time</td><td>~15 Minutes (4 Included Wood Screws)</td></tr>
       </table>
+
+      <!-- FAQs -->
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <details>
+        <summary>Will this harm a late chicken entering at dusk?</summary>
+        <div class="faq-answer">No. If the door panel encounters any mechanical resistance while lowering, it halts and retracts upward immediately for 3 seconds before attempting to close again.</div>
+      </details>
+      <details>
+        <summary>What happens during a week of rain or heavy snow?</summary>
+        <div class="faq-answer">The built-in high-capacity lithium battery stores up to 30 days of backup reserve without direct sunlight. An emergency USB charging cable is also included.</div>
+      </details>
+      <details>
+        <summary>How difficult is installation?</summary>
+        <div class="faq-answer">The unit arrives fully pre-assembled. Simply level the frame over your existing coop cutout, secure the four included exterior screws into your wood framing, and face the solar bracket south.</div>
+      </details>
 
     </article>
   </main>
 
   <script>
-    function swapImage(thumbnail) {
-      document.getElementById('mainView').src = thumbnail.src;
+    function swapPhoto(thumb) {
+      document.getElementById('mainStage').src = thumb.src;
       document.querySelectorAll('.gallery-thumbs img').forEach(img => img.classList.remove('active'));
-      thumbnail.classList.add('active');
+      thumb.classList.add('active');
     }
   </script>
 
